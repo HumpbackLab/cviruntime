@@ -48,7 +48,8 @@ if [ ! -e $BUILD_PATH/build_flatbuffers_host ]; then
   mkdir -p $BUILD_PATH/build_flatbuffers_host
 fi
 pushd $BUILD_PATH/build_flatbuffers_host
-cmake -G Ninja -DCMAKE_INSTALL_PREFIX=$FLATBUFFERS_HOST_PATH \
+cmake -G Ninja -DFLATBUFFERS_BUILD_TESTS=OFF \
+    -DCMAKE_INSTALL_PREFIX=$FLATBUFFERS_HOST_PATH \
     $TOP_DIR/flatbuffers
 cmake --build . --target install
 test $? -ne 0 && echo "build flatbuffers failed !!" && popd && exit 1
